@@ -1,18 +1,39 @@
+import json
 import random
-import requests
 import sys
+from urllib.request import urlopen
 
 # API映射表
 API_MAP = {
-    "xiaohua": "https://api.pearktrue.cn/api/jdyl/xiaohua.php",
-    "duanzi": "https://api.pearktrue.cn/api/random/duanzi/",
-    "dujitang": "https://api.pearktrue.cn/api/dujitang"
+    "xiaohua": "https://v.api.aa1.cn/api/api-wenan-gaoxiao/index.php?aa1=json",
+    "duanzi": "https://v.api.aa1.cn/api/api-wenan-gaoxiao/index.php?aa1=json",
+    "dujitang": "https://v.api.aa1.cn/api/api-wenan-dujitang/index.php?aa1=json"
 }
 
+def parse_content(raw_content):
+    content = raw_content.strip().strip('"')
+    try:
+        data = json.loads(content)
+    except json.JSONDecodeError:
+        return content
+
+    if isinstance(data, list) and data:
+        data = data[0]
+
+    if isinstance(data, dict):
+        for value in data.values():
+            if isinstance(value, str):
+                return value.strip()
+
+    if isinstance(data, str):
+        return data.strip()
+
+    return content
+
 def get_content(api_url):
-    response = requests.get(api_url, timeout=3)
-    response.raise_for_status()
-    return response.text.strip().strip('"')
+    with urlopen(api_url, timeout=3) as response:
+        charset = response.headers.get_content_charset() or "utf-8"
+        return parse_content(response.read().decode(charset))
 
 if __name__ == "__main__":
     # 解析参数

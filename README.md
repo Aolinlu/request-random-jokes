@@ -1,6 +1,7 @@
 # Request Random Jokes
 
 一个 AI Skill，随机从公开 API 获取笑话、段子或毒鸡汤。
+脚本只使用 Python 标准库，无需安装第三方依赖。
 已经上传到 ClawHub，欢迎安装使用！
 
 ## 安装
@@ -39,6 +40,4 @@ python request_random_jokes.py dujitang
 
 ## 依赖
 
-```bash
-pip install requests
-```
+无需安装第三方依赖，仅需 Python 3。脚本只使用 Python 标准库。

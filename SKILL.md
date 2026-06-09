@@ -7,12 +7,14 @@ description: Get random fun content (joke, funny story/duanzi, poisonous chicken
 
 ## Overview
 
-This skill provides a lightweight Python script that fetches random fun content from three public APIs, supports optional type selection. Supported content types:
+This skill provides a lightweight Python script that fetches random fun content from public API endpoints, supports optional type selection, and uses only the Python standard library. Supported content types:
 - `xiaohua`: Random joke (笑话)
 - `duanzi`: Random funny story (段子)
 - `dujitang`: Random poisonous chicken soup quote (毒鸡汤)
 
 ## Usage
+
+Requires Python 3. No third-party dependencies or setup commands are needed.
 
 Run the script directly to get random content (automatically selects one of the three APIs randomly):
 ```bash
